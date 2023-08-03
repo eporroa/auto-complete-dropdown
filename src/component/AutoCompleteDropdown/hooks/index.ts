@@ -8,5 +8,12 @@ export const useAutocomplete = () => {
       "useAutocomplete must be used within an AutocompleteProvider"
     );
   }
+
+  context.filterData = () => {
+    return context.dataList.filter((item) =>
+      item.toLowerCase().includes(context.searchText.toLowerCase())
+    );
+  };
+
   return context;
 };

@@ -10,6 +10,7 @@ interface IState {
   dataList: string[];
   setSearchText: (value: string) => void;
   setDataList: (value: string[]) => void;
+  filterData: () => string[];
 }
 
 interface AutocompleteProviderProps {
@@ -21,6 +22,7 @@ const initialState: IState = {
   dataList: [],
   setSearchText: () => {},
   setDataList: () => {},
+  filterData: () => [],
 };
 
 export const AutocompleteContext = createContext<IState>(initialState);
@@ -38,7 +40,7 @@ const autocompleteReducer = (state: IState, action: IAction): IState => {
 
 export const AutocompleteProvider: FC<AutocompleteProviderProps> = ({
   children,
-}: AutocompleteProviderProps) => {
+}) => {
   const [state, dispatch] = useReducer(autocompleteReducer, initialState);
 
   const setSearchText = (value: string) =>
