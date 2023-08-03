@@ -6,7 +6,7 @@ This is a basic implementation of an autocomplete component in React with TypeSc
 
 1. Install all the dependencies by running `npm install`
 2. Run the project with `npm run dev`
-3. If you want to test with an remote source to pull the names, switch to branch `external-source` by running: `git checkout external-source`
+3. _FOR BONUS 1_ If you want to test with an remote source to pull the names, switch to branch `external-source` by running: `git checkout external-source`
 
 # React + TypeScript + Vite
 

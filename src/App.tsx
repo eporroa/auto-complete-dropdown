@@ -1,7 +1,8 @@
 import { useEffect, useState } from "react";
 
 import AutoCompleteDropdown from "./component/AutoCompleteDropdown";
-import { fetchData } from "./services/local";
+// import { fetchData } from "./services/local";
+import { fetchData } from "./services/remote";
 
 import "./App.css";
 
