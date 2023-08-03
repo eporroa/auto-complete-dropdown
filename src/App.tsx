@@ -19,7 +19,7 @@ function App() {
 
   return (
     <div>
-      <AutoCompleteDropdown data={data} />
+      <AutoCompleteDropdown data={data} inputPlaceholder="Enter a name" />
     </div>
   );
 }

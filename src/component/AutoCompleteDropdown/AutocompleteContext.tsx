@@ -1,4 +1,4 @@
-import { createContext, useReducer } from "react";
+import { createContext, useEffect, useReducer } from "react";
 import type { FC, ReactNode } from "react";
 
 type IAction =
@@ -15,6 +15,7 @@ interface IState {
 
 interface AutocompleteProviderProps {
   children: ReactNode;
+  data: string[];
 }
 
 const initialState: IState = {
@@ -40,6 +41,7 @@ const autocompleteReducer = (state: IState, action: IAction): IState => {
 
 export const AutocompleteProvider: FC<AutocompleteProviderProps> = ({
   children,
+  data,
 }) => {
   const [state, dispatch] = useReducer(autocompleteReducer, initialState);
 
@@ -49,12 +51,27 @@ export const AutocompleteProvider: FC<AutocompleteProviderProps> = ({
   const setDataList = (value: string[]) =>
     dispatch({ type: "SET_DATA_LIST", payload: value });
 
+  const filterData = () => {
+    return state.dataList.filter((item) =>
+      item.toLowerCase().includes(state.searchText.toLowerCase())
+    );
+  };
+
+  useEffect(() => {
+    setDataList(data);
+
+    return () => {
+      setDataList([]);
+    };
+  }, [data]);
+
   return (
     <AutocompleteContext.Provider
       value={{
         ...state,
         setSearchText,
         setDataList,
+        filterData,
       }}
     >
       {children}

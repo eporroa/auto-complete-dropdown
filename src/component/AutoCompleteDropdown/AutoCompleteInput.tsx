@@ -1,11 +1,17 @@
 // import { useEffect, useState } from "react";
 import type { FC, ChangeEvent } from "react";
 
-import { useAutocomplete } from "./hooks";
+import { useAutocomplete } from "./AutocompleteHooks";
 
-interface AutocompleteInputProps {}
+interface AutocompleteInputProps {
+  placeholder?: string;
+  onFocus: (event: HTMLElement) => void;
+}
 
-const AutocompleteInput: FC<AutocompleteInputProps> = () => {
+const AutocompleteInput: FC<AutocompleteInputProps> = ({
+  placeholder,
+  onFocus,
+}) => {
   const { searchText, setSearchText } = useAutocomplete();
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
@@ -14,7 +20,13 @@ const AutocompleteInput: FC<AutocompleteInputProps> = () => {
 
   return (
     <div>
-      <input type="text" value={searchText} onChange={handleChange} />
+      <input
+        placeholder={placeholder}
+        type="text"
+        value={searchText}
+        onChange={handleChange}
+        onFocus={(e) => onFocus(e.target)}
+      />
     </div>
   );
 };
